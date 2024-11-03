@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import products from "../components/products";
 import Card from "../components/Card";
 import axios from "axios";
+const API_URL = "http://localhost:8080";
 
 function Explore() {
-
-    
-
     const maxPrice = 
         products.reduce((prevValue, currentValue) => {
             let currentPrice = currentValue.listingPrice;
@@ -37,9 +35,10 @@ function Explore() {
     //making it so if there are two filters active and client delets one, it also de-activated the second one.
     //try `defaultValue`
 
-    function handleChange(event) {
+    function HandleChange(event) {
+        console.log(event);
         const {name, value} = event.target;
-        console.log(event.target);
+        console.log(event.maxPriceFilter);
         console.log(`[${name}]: ${value}`);
         setFilter((lastFilter) => {
             if(value>0) 
@@ -53,14 +52,11 @@ function Explore() {
             };
             
         })
-        console.log(filter);
-        console.log(filteredArray);
     }
 
     let [sorting, setSorting] = useState("lowToHigh");
     function handleSorting(event) {
         setSorting(event.target.value);
-        console.log(sorting);
     }
 
     //listens for changes in filtering and sorting, and only then re-rendering filteredArray.
@@ -88,13 +84,15 @@ function Explore() {
     }, [sorting, filter, stateProducts]);
 
     
-    return (
+    return ( 
         <div className="explore-container">
             <div className="explore-filter-container">
-                <p>Enter Minimum Price:</p>
-                <input defaultValue={minPrice} type="number" placeholder={minPrice} name="minPriceFilter" onChange={handleChange} />
-                <p>Enter Maximum Price:</p>
-                <input defaultValue={maxPrice} type="number" placeholder={maxPrice} name="maxPriceFilter" onChange={handleChange} />
+                <form className="explore-filter-form" onChange={HandleChange} >
+                    <label>Enter Minimum Price:</label>
+                    <input defaultValue={minPrice} type="number" placeholder={minPrice} name="minPriceFilter" /> <br/>
+                    <label>Enter Maximum Price:</label>
+                    <input defaultValue={maxPrice} type="number" placeholder={maxPrice} name="maxPriceFilter" />
+                </form>
                 <p>Sort by:</p>
                 <select onChange={handleSorting}>
                     <option value="lowToHigh">Prices: Low to High</option>
