@@ -1,0 +1,230 @@
+body {
+    background-color: rgb(255, 255, 255);
+    font-family: "Montserrat";
+    margin: 0;
+}
+
+.welcome-container {
+    background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255), rgba(46, 106, 179, 0.219), rgb(255, 255, 255), rgb(255, 255, 255));
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-container h1 {
+    font-family: "Montserrat";
+    font-size: 5rem;
+    color:rgb(15, 26, 36);
+    margin: 0;
+}
+
+.welcome-container h2 {
+    font-family: "Montserrat";
+    font-size: 1.3rem;
+    font-weight: 400;
+    color:rgb(16, 50, 82);
+    margin: 0;
+}
+
+.welcome-container a {
+    background-color: rgba(255, 255, 255, 0);
+    font-family: "Montserrat";
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem 0.3rem 0.8rem;
+    border: rgb(15, 26, 36) 1.5px solid;
+    color: rgb(15, 26, 36);
+    margin-top: 1rem;
+    border-radius: 5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    transition: ease-in-out 0.1s;
+    text-decoration: none;
+}
+
+.welcome-container a:hover {
+    background-color: rgb(15, 26, 36);
+    color: white;
+    font-size: 0.85rem;
+}
+
+.home-listings-container {
+    padding: 0rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-listings-container h2 {
+    margin: 1rem 0 0.5rem 0;
+    text-align: center;
+    font-weight: 400;
+    align-content: center;
+}
+
+.products-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.listing-card {
+    background-color: rgb(230, 230, 230);
+    border: rgb(16, 50, 82) 2px solid;
+    min-width: 15%;
+    max-width: 15%;
+    height: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+    border-radius: 10px;
+    transition: ease-in-out 0.3s;
+    box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.808);
+}
+
+.listing-card:hover {
+    filter: drop-shadow(5px 5px 20px rgba(19, 37, 54, 0.247));
+    box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.411);
+}
+
+.listing-card img {
+    aspect-ratio: 1;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.listing-card h3 {
+    font-size: 0.8rem;
+    color: rgb(19, 37, 54);
+    margin: 0;
+}
+
+.card-description {
+    color:rgb(77, 77, 77);
+    font-size: 0.55rem;
+    margin: 0;
+    margin-top: 0.3rem;
+}
+
+.card-surfboard-height {
+    color:rgb(53, 53, 53);
+    font-size: 0.55rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.card-price {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgb(15, 26, 36);
+}
+
+.card-contact-info h5 {
+    color: rgb(85, 137, 185);
+    font-weight: 400;
+    margin: 0;
+    margin-top: 0.5rem;
+    font-size: 0.6rem;
+}
+
+.card-contact-info p {
+    margin:0;
+    font-size: 0.55rem;
+    line-height: 0.8rem;
+}
+
+.card-contact-info p b {
+    font-size: 0.7rem;
+    color: rgb(19, 37, 54);
+}
+
+.navbar-container {
+    display: flex;
+    background-color: rgb(15, 26, 36);
+    justify-content: space-between;
+    padding: 1.5rem 0 1.5rem 0;
+}
+
+.navbar-container a {
+    margin: 1.5rem;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    padding-bottom: 0.2rem;
+    border-bottom: rgba(15, 26, 36, 0) 1px solid;
+    transition: ease-in-out 0.2s;
+}
+
+.navbar-container a:hover {
+    border-bottom: rgb(255, 255, 255) 1px solid;
+}
+
+/* list page */
+
+.list-container {
+    margin: 0;
+}
+
+.list-product-container {
+    margin: 0;
+    background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255), rgba(46, 106, 179, 0.219), rgb(255, 255, 255), rgb(255, 255, 255));
+    height: 87vh;
+}
+
+
+
+/* explore page */
+
+.explore-container {
+    background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255), rgba(46, 106, 179, 0.219), rgb(255, 255, 255), rgb(255, 255, 255));
+    display:flex;
+    flex-direction: row;
+    height: 87vh;
+    padding: 0 2rem 0 2rem;
+    align-content: center;
+}
+
+.explore-filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 25%;
+    margin-top: 4rem; 
+}
+
+.explore-filter-container p {
+    margin: 0 0 0.5rem 0;
+}
+
+.explore-filter-container input {
+    margin: 0 0 1.5rem 0;
+    border: rgb(228, 228, 228) 1px solid;
+    padding: 0.15rem 0 0.15rem 0.6rem;
+    border-radius: 20px;
+    font-family: "Montserrat";
+    font-size: 0.75rem;
+}
+
+.explore-products-container {
+    width: 90%;
+    margin:auto;
+    margin-top: 0;
+}
+
+.explore-products-container h1 {
+    padding-left: 1rem;
+    border-left: rgb(15, 26, 36) 2px solid;
+    color: rgb(15, 26, 36);
+}
+
+.explore-product-list-container {
+    display: flex;
+    flex-direction: row;
+}
