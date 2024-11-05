@@ -1,23 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import products from "../components/products";
 import Card from "../components/Card";
-import axios from "axios";
-const API_URL = "http://localhost:8080";
 
 function Explore() {
     const maxPrice = 
         products.reduce((prevValue, currentValue) => {
-            let currentPrice = currentValue.listingPrice;
-            let max = prevValue.listingPrice;
-            return {listingPrice: Math.max(max, currentPrice)};
-        }).listingPrice;
+            let currentPrice = currentValue.price;
+            let max = prevValue.price;
+            return {price: Math.max(max, currentPrice)};
+        }).price;
 
     const minPrice = 
         products.reduce((prevValue, currentValue) => {
-            let currentPrice = currentValue.listingPrice;
-            let min = prevValue.listingPrice;
-            return {listingPrice: Math.min(min, currentPrice)};
-        }).listingPrice;
+            let currentPrice = currentValue.price;
+            let min = prevValue.price;
+            return {price: Math.min(min, currentPrice)};
+        }).price;
     
     const [stateProducts] = useState(products);
     const [filter, setFilter] = useState({
@@ -27,7 +25,7 @@ function Explore() {
 
     const [filteredArray, setFilteredArray] = useState(
         stateProducts.filter((product) => {
-        return(product.listingPrice>=filter.minPriceFilter && product.listingPrice<=filter.maxPriceFilter);
+        return(product.price>=filter.minPriceFilter && product.price<=filter.maxPriceFilter);
     }));
 
 
@@ -63,20 +61,20 @@ function Explore() {
     useEffect(() => {
         let newFilteredArray = 
             stateProducts.filter((product) => {
-            return (product.listingPrice>=filter.minPriceFilter && product.listingPrice<=filter.maxPriceFilter);
+            return (product.price>=filter.minPriceFilter && product.price<=filter.maxPriceFilter);
         });
 
         //sortFilteredArray
         let sortFilteredArray;
         switch (sorting) {
             case "lowToHigh":
-                sortFilteredArray = newFilteredArray.toSorted((a,b) => a.listingPrice - b.listingPrice);
+                sortFilteredArray = newFilteredArray.toSorted((a,b) => a.price - b.price);
                 break;               
             case "highToLow":
-                sortFilteredArray = newFilteredArray.toSorted((a,b) => b.listingPrice - a.listingPrice);
+                sortFilteredArray = newFilteredArray.toSorted((a,b) => b.price - a.price);
                 break;
             default:
-                sortFilteredArray = newFilteredArray.toSorted((a,b) => a.listingPrice - b.listingPrice);
+                sortFilteredArray = newFilteredArray.toSorted((a,b) => a.price - b.price);
                 break;
         }
         console.log(sortFilteredArray);

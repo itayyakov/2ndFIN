@@ -2,6 +2,7 @@ body {
     background-color: rgb(255, 255, 255);
     font-family: "Montserrat";
     margin: 0;
+    max-width: 100% !important;
 }
 
 .welcome-container {
@@ -10,21 +11,21 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0;
-    height: 80vh;
+    min-height: 90vh;
     align-items: center;
     justify-content: center;
 }
 
 .welcome-container h1 {
     font-family: "Montserrat";
-    font-size: 5rem;
+    font-size: 7rem;
     color:rgb(15, 26, 36);
     margin: 0;
 }
 
 .welcome-container h2 {
     font-family: "Montserrat";
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 400;
     color:rgb(16, 50, 82);
     margin: 0;
@@ -33,26 +34,28 @@ body {
 .welcome-container a {
     background-color: rgba(255, 255, 255, 0);
     font-family: "Montserrat";
-    font-size: 0.8rem;
+    font-size: 1.3rem;
     padding: 0.3rem 0.8rem 0.3rem 0.8rem;
-    border: rgb(15, 26, 36) 1.5px solid;
+    border: rgb(15, 26, 36) 2px solid;
     color: rgb(15, 26, 36);
     margin-top: 1rem;
     border-radius: 5px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0;
-    transition: ease-in-out 0.1s;
+    transition: ease-in-out 0.2s;
     text-decoration: none;
 }
 
 .welcome-container a:hover {
     background-color: rgb(15, 26, 36);
     color: white;
-    font-size: 0.85rem;
+    font-size: 1.35rem;
 }
 
 .home-listings-container {
+    background-image: url("uploads/pattern.svg");
+    box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.925);
     padding: 0rem 2rem 2rem 2rem;
     display: flex;
     flex-direction: column;
@@ -60,41 +63,45 @@ body {
 }
 
 .home-listings-container h2 {
-    margin: 1rem 0 0.5rem 0;
+    margin: 3rem 0 0.5rem 0;
     text-align: center;
-    font-weight: 400;
+    font-weight: 500;
     align-content: center;
+    font-size: 2.5rem;
+    color:rgb(15, 26, 36);
 }
 
 .products-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 100% !important;
+    align-content: center;
 }
 
 .listing-card {
     background-color: rgb(230, 230, 230);
     border: rgb(16, 50, 82) 2px solid;
-    min-width: 15%;
-    max-width: 15%;
     height: auto;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin-right: 1.5rem;
-    margin-left: 1.5rem;
+    padding: 1rem 2rem 1rem 2rem;
+    margin: 1.5rem;
     border-radius: 10px;
     transition: ease-in-out 0.3s;
-    box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.808);
+    box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.87);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .listing-card:hover {
-    filter: drop-shadow(5px 5px 20px rgba(19, 37, 54, 0.247));
-    box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.411);
+    filter: drop-shadow(5px 5px 20px rgba(19, 37, 54, 0.342));
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.418);
+    border: rgb(30, 77, 121) 2px solid;
+
+    .card-description, h3, .card-contact-info, h5, p, b, 
+    .card-price, .card-surfboard-height, .card-surfboard-type {
+        color:rgb(255, 255, 255);
+    }
+
 }
 
 .listing-card img {
@@ -104,30 +111,45 @@ body {
 }
 
 .listing-card h3 {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     color: rgb(19, 37, 54);
     margin: 0;
+    transition: ease-in-out 0.3s;
 }
 
 .card-description {
+    transition: ease-in-out 0.3s;
     color:rgb(77, 77, 77);
-    font-size: 0.55rem;
+    font-size: 0.9rem;
     margin: 0;
     margin-top: 0.3rem;
+    font-weight: 500;
 }
 
 .card-surfboard-height {
     color:rgb(53, 53, 53);
-    font-size: 0.55rem;
+    font-size: 1rem;
     margin-top: 10px;
-    margin-bottom: 10px;
     font-weight: 700;
+    transition: ease-in-out 0.3s;
 }
 
+.card-surfboard-type {
+    color:rgb(53, 53, 53);
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+    transition: ease-in-out 0.3s;
+    font-style: italic;
+    transition: ease-in-out 0.3s;
+}
+
+
 .card-price {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: rgb(15, 26, 36);
+    transition: ease-in-out 0.3s;
 }
 
 .card-contact-info h5 {
@@ -135,25 +157,35 @@ body {
     font-weight: 400;
     margin: 0;
     margin-top: 0.5rem;
-    font-size: 0.6rem;
+    font-size: 1.1rem;
+    transition: ease-in-out 0.3s;
 }
 
 .card-contact-info p {
     margin:0;
-    font-size: 0.55rem;
-    line-height: 0.8rem;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+    transition: ease-in-out 0.3s;
 }
 
 .card-contact-info p b {
-    font-size: 0.7rem;
+    font-size: 1.2rem;
     color: rgb(19, 37, 54);
+    transition: ease-in-out 0.3s;
 }
+
+/* nav bar */
 
 .navbar-container {
     display: flex;
     background-color: rgb(15, 26, 36);
     justify-content: space-between;
-    padding: 1.5rem 0 1.5rem 0;
+    padding: 0 2rem 0 2rem;
+    min-height: 10vh;
+    align-items: center;
+    filter: drop-shadow(5px 5px 15px rgba(19, 37, 54, 0.342));
+    border-bottom: rgb(175, 196, 216) 5px solid;
+    z-index: 100;
 }
 
 .navbar-container a {
@@ -161,8 +193,9 @@ body {
     text-decoration: none;
     color: rgb(255, 255, 255);
     padding-bottom: 0.2rem;
-    border-bottom: rgba(15, 26, 36, 0) 1px solid;
+    border-bottom: rgba(15, 26, 36, 0) 1px dashed;
     transition: ease-in-out 0.2s;
+    font-size: 1.4rem;
 }
 
 .navbar-container a:hover {
@@ -178,7 +211,80 @@ body {
 .list-product-container {
     margin: 0;
     background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255), rgba(46, 106, 179, 0.219), rgb(255, 255, 255), rgb(255, 255, 255));
-    height: 87vh;
+    height: fit-content;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0 2rem 0;
+}
+
+.list-container h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+.list-container h1 {
+    font-size: 2.6rem;
+    margin: 0;
+}
+
+.list-container .list-form {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.list-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-container .list-form .full-width {
+    width: 100%
+}
+
+.list-container .list-form input {
+    margin: 0.2rem 0.1rem 0.2rem 0.1rem;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    border: rgb(228, 228, 228) 1px solid;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.568);
+    filter: drop-shadow(5px 5px 5px rgba(19, 37, 54, 0.103));
+}
+
+.list-container .list-form label {
+    font-weight: 500;
+    line-height: 2rem;
+}
+
+.list-container .list-form button {
+    background-color: rgb(15, 26, 36);
+    font-family: "Montserrat";
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem 0.3rem 0.8rem;
+    border: rgb(15, 26, 36) 1.5px solid;
+    color: white;
+    margin-top: 1rem;
+    border-radius: 5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    transition: ease-in-out 0.1s;
+}
+
+.list-container .list-form-select {
+    margin: 0.2rem 0.1rem 0.2rem 0.1rem;
+    padding: 0.2rem 0.5rem 0.2rem 1rem;
+    border: rgb(228, 228, 228) 1px solid;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.568);
+    filter: drop-shadow(5px 5px 5px rgba(19, 37, 54, 0.103));
+}
+
+.list-container .feet-input {
+    direction: rtl;
 }
 
 
@@ -189,30 +295,44 @@ body {
     background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255), rgba(46, 106, 179, 0.219), rgb(255, 255, 255), rgb(255, 255, 255));
     display:flex;
     flex-direction: row;
-    height: 87vh;
-    padding: 0 2rem 0 2rem;
+    min-height: 87vh;
+    height: fit-content;
+    padding: 2rem 2rem 0 2rem;
     align-content: center;
+    max-width: 100%;
+    gap: 2rem;
 }
 
 .explore-filter-container {
     display: flex;
     flex-direction: column;
     align-items: start;
-    width: 25%;
-    margin-top: 4rem; 
+    justify-content: start;
+    width: 20%;
+    margin: 4 0 0.5rem 0;
+    padding-top: 5rem;
 }
 
 .explore-filter-container p {
     margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.explore-filter-form label {
+    font-size: 1.5rem;
 }
 
 .explore-filter-container input {
-    margin: 0 0 1.5rem 0;
+    margin: 0.5rem 0 1.5rem 0;
     border: rgb(228, 228, 228) 1px solid;
-    padding: 0.15rem 0 0.15rem 0.6rem;
+    padding: 0.3rem 0 0.3rem 1rem;
     border-radius: 20px;
     font-family: "Montserrat";
-    font-size: 0.75rem;
+    font-size: 1.3rem;
+}
+
+.explore-filter-container select {
+    font-size: 1.3rem;
 }
 
 .explore-products-container {
@@ -225,9 +345,10 @@ body {
     padding-left: 1rem;
     border-left: rgb(15, 26, 36) 2px solid;
     color: rgb(15, 26, 36);
+    font-size: 2.5rem;
 }
 
 .explore-product-list-container {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }

@@ -6,10 +6,11 @@ function Navbar() {
             <div className="navigation-left"> 
                 <a href="/">Home</a>
                 <a href="/explore">Explore</a>
-                <a href="/list">List Your Surfboard</a>   
+                 
             </div>
             <div className="navigation-right">
-                <a href="/account">My Account</a>
+                 {/* <a href="/account">My Account</a> */}
+                 <a href="/list">List Your Surfboard</a>  
             </div> 
         </div>
     );

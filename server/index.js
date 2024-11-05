@@ -3,7 +3,9 @@ import bodyParser from "body-parser";
 import axios from "axios";
 import cors from "cors";
 import multer from "multer";
-import path from "path";
+import pg from "pg";
+import passwords from "./passwords.json" with { type: "json" };
+
 let products = [
     {
         id: 1,
@@ -59,6 +61,25 @@ let products = [
     }
 ];
 
+const db = new pg.Client({
+    user: "postgres",
+    host: "localhost",
+    database: "2ndfin",
+    password: passwords.dbpassword,
+    port: 5432,
+  });
+
+  db.connect();
+
+  db.query("SELECT * FROM products", (err, res) => {
+    if(err) {
+      console.error("Error executing query: ", err.stack);
+    } else {
+      products = res.rows;
+      console.log(products);
+    }
+    db.end();
+  });
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -125,9 +146,7 @@ app.get("/filter?", (req, res) => {
 let lastImageDir = "";
 app.post('/uploadFile', upload.single('file'), (req, res) => {
     try {
-        console.log("Catched request");
         lastImageDir = req.file.path;
-        console.log(lastImageDir);
         res.json(req.file.path).status(200);
     } catch (error) {
         res.status(500).json({ error: error })
@@ -141,20 +160,16 @@ app.post("/post?", (req, res) => {
     const q = req.query;
     const product = {
         id: products.length+1,
-        listingTitle: q.title,
-        listingDescription: q.description,
-        listingSurfboardType: q.surfboardType,
-        listingSurfboardHeight: q.height,
-        listingPrice: q.price,
-        listingImg: "file:///D:/0Work/FULLSTACK%20COURSE%20UDEMY/2ndFIN%20Project" + lastImageDir.slice(8),
-        listingContactInfo: {
-            email: `${q.email}`,
-            phone: `${q.phone}`
-        }
+        title: q.title,
+        description: q.description,
+        surfboard_type: q.surfboardType,
+        height: q.height,
+        price: q.price,
+        image: lastImageDir.slice(8),
+        email: `${q.email}`,
+        phone: `${q.phone}`
     };
     products.push(product);
-    console.log(product);
-    console.log(lastImageDir);
     res.json(products[products.length-1]).status(200);
 })
 

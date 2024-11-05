@@ -1,0 +1,15 @@
+id,title,description,surfboard_type,height,price,image,email,phone
+1,Al Merrick Rocket Wide,"A super radical shortboard with just enough volume to enter any wave, and simultaneously rippes and moves real readical.",shortboard,5'7,1500,rocketwide.jpg,yossi@gmail.com,051-1111111
+2,Al Merrick Happy Everyday,"An everyday-surfboard, works amazing in mushy waves, forgiving and entring waves easily.",shortboard,6'0,1800,happyeveryday.jpg,eden@gmail.com,052-2222222
+3,Lost Mayhem Driver 3.0,"A full performace shortboard, likes good+ conditions, generating tons of speed and making huge sprayes.",shortboard,5'7,2000,driver3.jpg,itamar@gmail.com,053-3333333
+4,Aloha Fun Division Long EcoSkin,"Typical longboard, will surf on literally any wave, offering lots of stabillity and flow.",longboard,9'0,2500,fundivision.jpg,anabel@gmail.com,054-4444444
+5,Firewire Seaside,"Perfect for small to medium waves, fast and responsive on turns.",funboard,5'8,1550,seaside.jpg,alex@surfworld.com,052-3333333
+6,Lost Puddle Jumper,"A fun, high-volume board, ideal for small waves and easy paddling.",shortboard,5'6,1300,puddlejumper.jpg,jessica@yahoo.com,052-4444444
+7,Pyzel Ghost,"Great in a wide range of conditions, performs well in barrels and steeper waves.",shortboard,6'2,1900,ghost.jpg,sam@pyzelsurf.com,052-5555555
+8,Haydenshapes Hypto Krypto,"All-around board, versatile and stable, suitable for beginners and advanced surfers alike.",shortboard,5'10,1750,hyptokrypto.jpg,kate@oceanic.com,052-6666666
+9,Channel Islands Twin Pin,"Fast and loose, perfect for creating drive in smaller waves, but holds in bigger surf too.",funboard,6'0,1600,twinpin.jpg,leo@twinpins.com,052-7777777
+10,Torq Mod Fish,"Easy paddling, stability, and speed, ideal for surfers transitioning from a beginner board.",longboard,6'3,1400,modfish.jpg,emma@torqsurf.com,052-8888888
+11,Softech Roller,"Soft-top beginner board, very stable and durable, excellent for learning the basics.",softboard,7'0,900,softechroller.jpg,tommy@softsurf.com,052-9999999
+12,DHD Mini Twin,"Classic twin-fin feel with modern elements, excels in small to medium surf.",shortboard,5'8,1450,minitwin.jpg,megan@dhdsurf.com,052-1010101
+13,Catch Surf Odysea,"High-performance soft-top, fun for both kids and adults, suitable for smaller surf.",softboard,6'0,1100,odysea.jpg,josh@odysurf.com,052-2020202
+14,Rusty Slayer,"A high-performance board that offers stability and speed, great for advanced surfers in large waves.",shortboard,6'4,2100,slayer.jpg,sarah@rustysurf.com,052-3030303
