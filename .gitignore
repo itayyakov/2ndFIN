@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 server/passwords.json
 server/uploads/
+=======
+passwords.json
+uploads/
+>>>>>>> d5d6d8e6ef5b1ec5cf28f668bcda81d9280c2b7b
