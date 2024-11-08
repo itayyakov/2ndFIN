@@ -76,7 +76,6 @@ const db = new pg.Client({
       console.error("Error executing query: ", err.stack);
     } else {
       products = res.rows;
-      console.log(products);
     }
     db.end();
   });
@@ -170,7 +169,8 @@ app.post("/post?", (req, res) => {
         phone: `${q.phone}`
     };
     products.push(product);
-    res.json(products[products.length-1]).status(200);
+    res.json(products[products.length-1]).status(200).sendFile(lastImageDir);
+    console.log(lastImageDir);
 })
 
 
