@@ -30,7 +30,7 @@ Filter through the listings using minimum and maximum prices, and sort them by p
 
 1. Clone the repository.
 
-2. Create a PostgreSQL Database, in which create "products" and "users" tables, and change the credentials to match yours. 
+2. Create a PostgreSQL Database, in which create a "products" table, and change the credentials to match yours. 
 A CSV file with all the products' information is provided for you to import. 
 // Or otherwise, 4 products are defined inside the server's index.js. 
 
