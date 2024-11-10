@@ -89,8 +89,10 @@ function List() {
     
     function ProductListed() {
         return (
-            <div>
-                <h1>Listed</h1>
+            <div className="list-product-container">
+                <h1>Your surfboard has been listed.</h1>
+                <h2>We wish you the best of luck selling it.</h2>
+                <a className="explore-button" href="/explore">Find my surfboard in the Explore</a>
             </div>
         );
     }
