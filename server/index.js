@@ -5,62 +5,69 @@ import cors from "cors";
 import multer from "multer";
 import pg from "pg";
 import passwords from "./passwords.json" with { type: "json" };
+import bcrypt from "bcrypt";
+import session from "express-session";
+import passport from "passport";
+import { Strategy } from "passport-local";
+
+const frontURL = "http://localhost:8080";
+const saltRounds = 2;
+const app = express();
+const port = 8080;
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 let products = [
     {
         id: 1,
-        listingTitle: "Al Merrick Rocket Wide",
-        listingDescription: "A super radical shortboard with just enough volume to enter any wave, and simultaneously rippes and moves radicaly.",
-        listingSurfboardType: "shortboard",
-        listingSurfboardHeight: "5'7",
-        listingPrice: 1500,
-        listingImg: "https://alohaxchng.com/cdn/shop/files/rocketwide-2.jpg?v=1697070256",
-        listingContactInfo: {
-            email: "yossi@gmail.com",
-            phone: "051-1111111"
-        }
+        title: "Al Merrick Rocket Wide",
+        description: "A super radical shortboard with just enough volume to enter any wave, and simultaneously rippes and moves radicaly.",
+        surfboard_type: "shortboard",
+        height: "5'7",
+        price: 1500,
+        image: "rocketwide.jpg",
+        email: "yossi@gmail.com",
+        phone: "051-1111111"
+
     },
     {
         id: 2,
-        listingTitle: "Al Merrick Happy Everyday",
-        listingDescription: "An everyday-surfboard, works amazing in mushy waves, forgiving and entring waves easily.",
-        listingSurfboardType: "shortboard",
-        listingSurfboardHeight: "6'0",
-        listingPrice: 1800,
-        listingImg: "https://img.leboncoin.fr/api/v1/lbcpb1/images/34/25/6f/34256f53faa525aa29197b3ef8e55e20b48bfb63.jpg?rule=ad-large",
-        listingContactInfo: {
-            email: "eden@gmail.com",
-            phone: "052-2222222"
-        }
+        title: "Al Merrick Happy Everyday",
+        description: "An everyday-surfboard, works amazing in mushy waves, forgiving and entring waves easily.",
+        surfboard_type: "shortboard",
+        height: "6'0",
+        price: 1800,
+        image: "happyeveryday.jpg",
+        email: "eden@gmail.com",
+        phone: "052-2222222"
+
     },
     {
         id: 3,
-        listingTitle: "Lost Mayhem Driver 3.0",
-        listingDescription: "A full performace shortboard, likes good+ conditions, generating tons of speed and making huge sprayes.",
-        listingSurfboardType: "shortboard",
-        listingSurfboardHeight: "5'7",
-        listingPrice: 2000,
-        listingImg: "https://www.alohasurfmanly.com/cdn/shop/files/Screenshot2024-07-23at12.00.26pm.png?v=1721700067&width=533",
-        listingContactInfo: {
-            email: "itamar@gmail.com",
-            phone: "053-3333333"
-        }
+        title: "Lost Mayhem Driver 3.0",
+        description: "A full performace shortboard, likes good+ conditions, generating tons of speed and making huge sprayes.",
+        surfboard_type: "shortboard",
+        height: "5'7",
+        price: 2000,
+        image: "https://www.alohasurfmanly.com/cdn/shop/files/Screenshot2024-07-23at12.00.26pm.png?v=1721700067&width=533",
+        email: "itamar@gmail.com",
+        phone: "053-3333333"
     },
     {
         id: 4,
-        listingTitle: "Aloha Fun Division Long EcoSkin",
-        listingDescription: "Typical longboard, will surf on literally any wave, offering lots of stabillity and flow.",
-        listingSurfboardType: "longboard",
-        listingSurfboardHeight: "9'0",
-        listingPrice: 2500,
-        listingImg: "https://www.bathshebasurf.co.uk/cdn/shop/products/aloha-fun-division-long-ecoskin-surfboard-aloha-surfboards-479363.jpg?v=1654949413",
-        listingContactInfo: {
-            email: "anabel@gmail.com",
-            phone: "054-4444444"
-        }
+        title: "Aloha Fun Division Long EcoSkin",
+        description: "Typical longboard, will surf on literally any wave, offering lots of stabillity and flow.",
+        surfboard_type: "longboard",
+        height: "9'0",
+        price: 2500,
+        image: "https://www.bathshebasurf.co.uk/cdn/shop/products/aloha-fun-division-long-ecoskin-surfboard-aloha-surfboards-479363.jpg?v=1654949413",
+        email: "anabel@gmail.com",
+        phone: "054-4444444"
     }
 ];
 
+
+// Manage Postgres database connection
 const db = new pg.Client({
     user: "postgres",
     host: "localhost",
@@ -77,9 +84,10 @@ const db = new pg.Client({
     } else {
       products = res.rows;
     }
-    db.end();
   });
 
+
+// Manage file uploads
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, 'uploads/')
@@ -89,15 +97,13 @@ const storage = multer.diskStorage({
       }
 })
 
-const app = express();
-const port = 8080;
 const upload = multer({ storage: storage })
 
 app.use(cors());
 
 
 
-//get current minimun and maximum price
+// Get current minimun and maximum price
 const maxPrice = 
         products.reduce((prevValue, currentValue) => {
             let currentPrice = currentValue.listingPrice;
@@ -114,18 +120,18 @@ const minPrice =
 
 
 
-//get all products
+// Get all products
 app.get("/products", (req, res) => {
     res.json(products);
 })
 
-//get specific product
+// Get specific product
 app.get("/products/:id", (req, res) => {
     const id = parseInt(req.params.id)
     res.json(products.find((product) => product.id === id));
 })
 
-//get filtered products
+// Get filtered products
 app.get("/filter?", (req, res) => {
     const filter = {
         minFilter: parseInt(req.query.minprice) || minPrice,
@@ -141,7 +147,7 @@ app.get("/filter?", (req, res) => {
 })
 
 
-//Upload product image
+// Upload product image
 let lastImageDir = "";
 app.post('/uploadFile', upload.single('file'), (req, res) => {
     try {
@@ -153,7 +159,7 @@ app.post('/uploadFile', upload.single('file'), (req, res) => {
 })
 
 
-//Add new product
+// Add new product -- LOCALLY
 app.post("/post?", (req, res) => {
     console.log(`A new product has been posted`);
     const q = req.query;
@@ -175,6 +181,89 @@ app.post("/post?", (req, res) => {
 
 
 
+// Handle Account login, registration and management
+
+// Find a user in database with given email address
+async function getUserFromEmail(email) {
+    let checkExisting = await db.query("SELECT * FROM users WHERE email = $1", [
+        email,
+    ]);
+    if(checkExisting.rowCount) 
+        return checkExisting.rows[0];
+    else 
+        return null;
+}
+
+// Handle Registraion
+app.post("/register", async (req, res) => {
+    const username = req.body.name;
+    const password = req.body.password;
+    const email = req.body.email;
+    const phone = req.body.phone;
+    const user = await getUserFromEmail(email);
+
+    try {
+        if(user) {
+            res.json(`A User with this email address already exists.`)
+        }
+        else {
+            //Encrypt password
+            bcrypt.hash(password, saltRounds, (err, hash) => {
+                if(err) {
+                    console.log("Error hashing password: ", err);
+                    res.send("Registration Unsuccessful. Please try again.")
+                }
+                db.query(`INSERT INTO users (username, password, email, phone)
+                VALUES('${username}', '${hash}', '${email}', '${phone}')`,         
+                (err) => {
+                    if(err) {
+                        console.error("Error executing query: ", err.stack);
+                    } else {
+                        res.json("User Registered Successfully.").status(200);
+                    }
+                });    
+            })
+        }
+    } catch (error) {
+        res.json(error);
+    }
+})
+
+// Handle Logging In
+app.post("/login", async (req, res) => {
+    console.log("A new login attempt has been made, request body:", req.body)
+    const email = req.body.username;
+    const loginPassword = req.body.password;
+    const user = await getUserFromEmail(email);
+    try {
+        if(user) {
+            console.log("Password for comparison: ", loginPassword);
+            const storedHashedPassword = user.password;
+            bcrypt.compare(loginPassword, storedHashedPassword, (err, result) => {
+                if(err) console.log("Error comparing passwords: ", err);
+                else {
+                    if(result) {
+                        // USER LOGGED IN - DO LOGGED IN STUFF
+                        console.log("User logged in successfully with the id of: ", user.id)
+                        res.json(user.id).status(200);
+                    }
+                    else {
+                        res.json("Incorrect Password.");    
+                    }
+                }
+            })
+        } else res.json("User not found.");
+    } catch (error) {
+        res.json(error);
+    }
+
+})
+
+
+app.get("/account", (req, res) => {
+    if(req.isAuthenticated()) res.json(true);
+    else res.json(false);
+})
 
 
 
@@ -182,6 +271,8 @@ app.post("/post?", (req, res) => {
 
 
 
+
+// Verify Port
 app.listen(port, () => {
     console.log(`Server listening on port ${8080}`);
 })
