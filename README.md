@@ -37,8 +37,8 @@ A CSV file with all the products' information is provided for you to import.
 3. Create a folder called "uploads" in the directory /server/uploads - This is where all the uploaded listing images are stored.
 
 # RUN:
-Client - open a new terminal, cd to my-app, and use npm start.
-Server - open a new terminal, cd to server, and use node / nodemon index.js.
+Client - open a new terminal, cd to my-app, and use 'npm install', and then 'npm start'.
+Server - open a new terminal, cd to server, and use 'npm install', and then 'node index.js' / 'nodemon index.js.'
 
 *MENTION: Errors may occur, as said this project was not optimized for running anywhere else other than my own PC.
 
