@@ -13,7 +13,7 @@ Works like an API through HTTP requests, queries information from PostgreSQL, an
 Client: Runs on port 3000, uses mainly React.js for all the frontend.
 Gets information from the server using Axios for API requests from the server port. 
 
-Database: Hosted locally in PostgreSQL. Holds all of the products and users' information.
+Database: Hosted locally in PostgreSQL. Holds all of the products' information.
 
 ------------------------------------------
 
@@ -22,7 +22,6 @@ Database: Hosted locally in PostgreSQL. Holds all of the products and users' inf
 
 Each user can explore existing listings of surfboards and contact the seller with the provided information,
 Filter through the listings using minimum and maximum prices, and sort them by prices (high or low first) to better find their fit.
-As I've started to implement - in the future, clients might also be able to create an account and list their products, edit them, and delete them.
 
 ------------------------------------------
 
@@ -34,7 +33,6 @@ As I've started to implement - in the future, clients might also be able to crea
 2. Create a PostgreSQL Database, in which create "products" and "users" tables, and change the credentials to match yours. 
 A CSV file with all the products' information is provided for you to import. 
 // Or otherwise, 4 products are defined inside the server's index.js. 
-- NOT SETTING UP THE DATABASE MEANS - All of the users' functions will not work and possibly the whole application. Make your own adjustments.
 
 3. Create a folder called "uploads" in the directory /server/uploads - This is where all the uploaded listing images are stored.
 
